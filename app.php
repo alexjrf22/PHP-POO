@@ -1,80 +1,67 @@
 <?php
 
-
     declare(strict_types=1);
     require_once __DIR__ . '/vendor/autoload.php';
+    class Person
+    {
 
-     function greetings(string $name, int $age): string
-     {
-        return "Olá {$name} , você possui {$age} anos de idade.";
-     }
+        public function greetings(string $name, int $age, int|float $heigth, int|float $weigth, callable $imc): string
+        {
+            $return = "Olá {$name} , você possui {$age} anos de idade.";
+            $return .= $imc(heigth: $heigth, weigth: $weigth);
+            return $return;
 
-     echo greetings(name: 'Alexandre', age: 38);
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /*
-    use Alex\Poo\PessoaFisica;
-    use Alex\Poo\PessoaJuridica;
-    use Alex\Poo\Pessoa;
-    use Alex\Poo\PessoaEstrangeira;
+        }
 
-    $pessoaFisica = new PessoaFisica;
-    $pessoaFisica->name = 'Alexandre';
-    $pessoaFisica->age = 38;
-    $pessoaFisica->gender = 'Masculino';
-    $pessoaFisica->setCpf(cpf: '018.569.241-90');
+    }
 
-    $PessoaEstrangeira = new PessoaEstrangeira;
-    $PessoaEstrangeira->name = 'Jason';
-    $PessoaEstrangeira->age = 42;
-    $PessoaEstrangeira->gender = 'Masculino';
-    $PessoaEstrangeira->setCpf(cpf: '000.111.333-66');
-   
+    function imc(int|float $heigth, int|float $weigth) : string
+    {
+        $imc = $weigth / ($heigth * $heigth);
+        $imc = number_format($imc,2);
+        return "O IMC está em: " . $imc;
+    }
 
-    $pessoaJuridica = new PessoaJuridica;
-    $pessoaJuridica->name = 'AJSF';
-    $pessoaJuridica->cnpj = '15.534.409/0001-65';
+    $person = new Person; 
 
-    echo "Nome proprietário: " . $pessoaFisica->getName() . ", CPF: " . $pessoaFisica->getCpf() . PHP_EOL;
-    echo "Nome da empresa: " . $pessoaJuridica->getName() . ", CNPJ: " . $pessoaJuridica->getCnpj();
+    echo $person->greetings(name: 'Alexandre', age: 38, heigth:1.61, weigth:63.33, imc: 'imc') . PHP_EOL;
 
-    dump($pessoaJuridica->getName());
-    dump($pessoaJuridica->getCnpj());
-    dump($pessoaFisica->getName());
-    dump(var: $pessoaFisica->getCpf());
+
+   /*
+
+   function showSystemInfo(): never
+{
+    $string = shell_exec(command: 'php --version');
+    echo $string;
+    exit;  // ou die("Aqui vai a mensagem de encerramento do APP");
+}
+
+showSystemInfo();
+
+   -->>>> Passando uma função como parametro;
+
+    $person = new Person; 
+
+    echo $person->greetings(name: 'Alexandre', age: 38, heigth:1.61, weigth:63.33, imc: function(int|float $heigth, int|float $weigth){
+        $imc = $weigth / ($heigth * $heigth);
+        $imc = number_format($imc,2);
+        return "O IMC está em: " . $imc;
+    }) . PHP_EOL;
     
-    dump(var: $pessoaFisica->showName());
 
-    if($pessoaJuridica instanceof Pessoa){
-        dump(var: "É pessoa tbm");
-    }else{
-        dump('não é pessoa');
+    
+  
+ 
+    -->>> Com valores fixos;
+    function imc(int|float $heigth = 98, int|float $weigth = 1.87) : string
+    {
+        $imc = $heigth / ($weigth * $weigth);
+        $imc = number_format($imc,2);
+        return "O IMC está em: " . $imc;
     }
     
-    getName($pessoaJuridica);
-  
-    $document = $pessoaJuridica->getDocument();
+    $person = new Person; 
 
-    echo $document . PHP_EOL;
+    echo $person->greetings(name: 'Alexandre', age: 38, imc: 'imc') . PHP_EOL;  
 
     */
