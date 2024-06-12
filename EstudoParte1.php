@@ -1,5 +1,7 @@
    <?php  
-    /*
+
+   //testando os atributos e metodos das classes.
+   require_once __DIR__ . '/vendor/autoload.php';
     use Alex\Poo\PessoaFisica;
     use Alex\Poo\PessoaJuridica;
     use Alex\Poo\Pessoa;
@@ -10,13 +12,14 @@
     $pessoaFisica->age = 38;
     $pessoaFisica->gender = 'Masculino';
     $pessoaFisica->setCpf(cpf: '018.569.241-90');
-
+    
+    /*
     $PessoaEstrangeira = new PessoaEstrangeira;
     $PessoaEstrangeira->name = 'Jason';
     $PessoaEstrangeira->age = 42;
     $PessoaEstrangeira->gender = 'Masculino';
     $PessoaEstrangeira->setCpf(cpf: '000.111.333-66');
-   
+    */
 
     $pessoaJuridica = new PessoaJuridica;
     $pessoaJuridica->name = 'AJSF';
@@ -38,10 +41,10 @@
         dump('não é pessoa');
     }
     
-    getName($pessoaJuridica);
+    $pessoaFisica->getName($pessoaJuridica);
   
-    $document = $pessoaJuridica->getDocument();
+   $document = $pessoaJuridica->getCnpj();
 
     echo $document . PHP_EOL;
 
-    */
+    

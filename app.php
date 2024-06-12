@@ -1,7 +1,40 @@
 <?php
-
+    
+    
     declare(strict_types=1);
     require_once __DIR__ . '/vendor/autoload.php';
+    
+    use Alex\Poo\Models\Customer;
+    use Alex\Poo\Person;
+    use Alex\Poo\ValueObjects\Email;
+
+    $person = new Person(name: 'Alexandre', age: 38, gender: 'Masculino');
+
+    dump(var: $person);
+
+    
+
+    /*
+    try{
+
+        $validate = new Customer;
+        $validate->name = 'Batata';
+        $validate->email = new Email(email: "alexjrf22@gmail.com"); 
+        echo "O email {$validate->getEmail()} pertence ao {$validate->name}." . PHP_EOL;
+
+    }catch(Exception $exception){
+
+        echo "Opsss! {$exception->getMessage()}" . PHP_EOL;
+
+    }
+    
+
+   
+
+
+
+ 
+    // A ideia é que com (final) a classe não pode ser extendida então a classe PersonNoGrata Vai dar erro. 
     class Person
     {
 
@@ -21,47 +54,4 @@
         $imc = number_format($imc,2);
         return "O IMC está em: " . $imc;
     }
-
-    $person = new Person; 
-
-    echo $person->greetings(name: 'Alexandre', age: 38, heigth:1.61, weigth:63.33, imc: 'imc') . PHP_EOL;
-
-
-   /*
-
-   function showSystemInfo(): never
-{
-    $string = shell_exec(command: 'php --version');
-    echo $string;
-    exit;  // ou die("Aqui vai a mensagem de encerramento do APP");
-}
-
-showSystemInfo();
-
-   -->>>> Passando uma função como parametro;
-
-    $person = new Person; 
-
-    echo $person->greetings(name: 'Alexandre', age: 38, heigth:1.61, weigth:63.33, imc: function(int|float $heigth, int|float $weigth){
-        $imc = $weigth / ($heigth * $heigth);
-        $imc = number_format($imc,2);
-        return "O IMC está em: " . $imc;
-    }) . PHP_EOL;
-    
-
-    
-  
- 
-    -->>> Com valores fixos;
-    function imc(int|float $heigth = 98, int|float $weigth = 1.87) : string
-    {
-        $imc = $heigth / ($weigth * $weigth);
-        $imc = number_format($imc,2);
-        return "O IMC está em: " . $imc;
-    }
-    
-    $person = new Person; 
-
-    echo $person->greetings(name: 'Alexandre', age: 38, imc: 'imc') . PHP_EOL;  
-
-    */
+ */

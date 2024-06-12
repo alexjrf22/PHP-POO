@@ -3,7 +3,7 @@
     declare(strict_types=1);
     namespace Alex\Poo;
 
-    class PessoaJuridica extends Pessoa implements PessoaJuridicaInterface
+    final class PessoaJuridica extends Pessoa implements PessoaJuridicaInterface
     {
         public string $cnpj;
 
